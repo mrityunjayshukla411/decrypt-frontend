@@ -16,7 +16,7 @@ function LeaderBoard() {
   useEffect(async () => {
     const jwt = JSON.parse(localStorage.getItem("jwt"));
     await axios
-      .get("https://d3crypt-backend.herokuapp.com/check-verified", {
+      .get("http://localhost:4000/check-verified", {
         headers: {
           "x-access-token": jwt,
         },
@@ -39,7 +39,7 @@ function LeaderBoard() {
   useEffect(() => {
     // ConsoleHelper("inhere");
     axios
-      .get("https://d3crypt-backend.herokuapp.com/leaderboad")
+      .get("http://localhost:4000/leaderboad")
       .then(async (res) => {
         await setRemainingList(res.data.slice(3));
         setFirst(res.data[0]);
@@ -67,10 +67,10 @@ function LeaderBoard() {
             </p>
           </h1>
           <div className="leaderboard-content">
-            <h5 style={{ textAlign: "center", color: "white", left : '50%'}}> The competition is now closed </h5>
+            {/* <h5 style={{ textAlign: "center", color: "white", left : '50%'}}> The competition is now closed </h5> */}
             {/* UNCOMMENT when the contest starts */}
-            {/* <Ranks remainingList={remainingList} first={first} second={second} third={third}></Ranks>
-            <PositionTable remainingList={remainingList} first={first} second={second} third={third}></PositionTable> */}
+            <Ranks remainingList={remainingList} first={first} second={second} third={third}></Ranks>
+            <PositionTable remainingList={remainingList} first={first} second={second} third={third}></PositionTable>
           </div>
         </div>
       </div>

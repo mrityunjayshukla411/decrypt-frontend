@@ -25,20 +25,20 @@ function PositionTable({ remainingList, first, second, third }) {
       </div>
       <div className="position-box">
         <PositionBox
-          src={second.imgKey}
+          src={second && second.imgKey}
           bg="#D3D3D3"
           pos="2"
-          name={second.username}
-          points={second.points}
+          name={second && second.username}
+          points={second && second.points}
         ></PositionBox>
       </div>
       <div className="position-box">
         <PositionBox
-          src={third.imgKey}
+          src={third && third.imgKey}
           bg="#EB8D00"
           pos="3"
-          name={third.username}
-          points={third.points}
+          name={third && third.username}
+          points={third && third.points}
         ></PositionBox>
       </div>
       {

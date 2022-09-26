@@ -20,7 +20,7 @@ function UserProfile() {
   useEffect(async () => {
      jwt = JSON.parse(localStorage.getItem("jwt"));
      await axios
-     .get("https://d3crypt-backend.herokuapp.com/check-verified", {
+     .get("http://localhost:4000/check-verified", {
        headers: {
          "x-access-token": jwt,
        },
@@ -41,7 +41,7 @@ function UserProfile() {
     
     
 
-    axios.get("https://d3crypt-backend.herokuapp.com/users/:idy", { params: { id: jwt } })
+    axios.get("http://localhost:4000/users/:idy", { params: { id: jwt } })
 
       .then((res) => {
         ConsoleHelper(res.data);
@@ -74,7 +74,7 @@ function UserProfile() {
   function submitHandler(e) {
     ConsoleHelper(jwt);
     axios
-      .get("https://d3crypt-backend.herokuapp.com/users/u", {
+      .get("http://localhost:4000/users/u", {
         params: {
           id: jwt,
           username: person.fullName,

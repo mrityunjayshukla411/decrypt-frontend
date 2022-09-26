@@ -46,7 +46,7 @@ export default function MobileNavbar() {
 
     
     await axios
-      .get("https://d3crypt-backend.herokuapp.com/user", {
+      .get("http://localhost:4000/user", {
         headers: {
           "x-access-token": token,
         },

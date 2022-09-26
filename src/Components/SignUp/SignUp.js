@@ -33,14 +33,14 @@ function SignUp() {
   const dispatch = useDispatch();
   const [popup,setPopup] = useState(false);
 
-  useEffect(() => {
-    setTimeout(() => setPopup(true), 1000);
-}, []);
+//   useEffect(() => {
+//     setTimeout(() => setPopup(true), 1000);
+// }, []);
 
   useEffect(async () => {
 
     const jwt = JSON.parse(localStorage.getItem("jwt"));
-    await axios.get("https://d3crypt-backend.herokuapp.com/check-verified", {
+    await axios.get("http://localhost:4000/check-verified", {
       headers: {
         'x-access-token': jwt
       }
@@ -57,7 +57,7 @@ function SignUp() {
       .catch((err) => {
         ConsoleHelper(err.message);
       })
-  })
+  }, [])
 
   const initialState = {
     username: "",
@@ -79,45 +79,46 @@ function SignUp() {
   
   const handleOnSubmit = (e) => {
     e.preventDefault();
-    // dispatch(register(newUser)).then(
-    //   () => {
-    //     // window.location.href = '/signin'
-    //     setPopup(true);
-    //   },
-    //   (error) => {
-    //     ConsoleHelper(error);
-    //     document.querySelector(".nameError").innerHTML = "&nbsp;";
-    //     document.querySelector(".emailError").innerHTML = "&nbsp;";
-    //     document.querySelector(".passwordError").innerHTML = "&nbsp;";
-    //     document.querySelector(".phoneError").innerHTML = "&nbsp;";
-    //     document.querySelector(".collegeError").innerHTML = "&nbsp;";
-    //     document.querySelector(".memError").innerHTML = "&nbsp;";
-    //     if (error.username) {
-    //       ConsoleHelper(error.username);
-    //       document.querySelector(".nameError").innerHTML = error.username;
-    //     }
-    //     if (error.email) {
-    //       ConsoleHelper(error.email);
-    //       document.querySelector(".emailError").innerHTML = error.email;
-    //     }
-    //     if (error.password) {
-    //       ConsoleHelper(error.password);
-    //       document.querySelector(".passwordError").innerHTML = error.password;
-    //     }
-    //     if (error.phone) {
-    //       ConsoleHelper(error.phone);
-    //       document.querySelector(".phoneError").innerHTML = error.phone;
-    //     }
-    //     if (error.college) {
-    //       ConsoleHelper(error.college);
-    //       document.querySelector(".collegeError").innerHTML = error.college;
-    //     }
-    //     if (error.mem) {
-    //       ConsoleHelper(error.mem);
-    //       document.querySelector(".memError").innerHTML = error.mem;
-    //     }
-    //   }
-    // );
+    dispatch(register(newUser)).then(
+      () => {
+        console.log("valid");
+        window.location.href = '/signin'
+        setPopup(true);
+      },
+      (error) => {
+        ConsoleHelper(error);
+        document.querySelector(".nameError").innerHTML = "&nbsp;";
+        document.querySelector(".emailError").innerHTML = "&nbsp;";
+        document.querySelector(".passwordError").innerHTML = "&nbsp;";
+        document.querySelector(".phoneError").innerHTML = "&nbsp;";
+        document.querySelector(".collegeError").innerHTML = "&nbsp;";
+        document.querySelector(".memError").innerHTML = "&nbsp;";
+        if (error.username) {
+          ConsoleHelper(error.username);
+          document.querySelector(".nameError").innerHTML = error.username;
+        }
+        if (error.email) {
+          ConsoleHelper(error.email);
+          document.querySelector(".emailError").innerHTML = error.email;
+        }
+        if (error.password) {
+          ConsoleHelper(error.password);
+          document.querySelector(".passwordError").innerHTML = error.password;
+        }
+        if (error.phone) {
+          ConsoleHelper(error.phone);
+          document.querySelector(".phoneError").innerHTML = error.phone;
+        }
+        if (error.college) {
+          ConsoleHelper(error.college);
+          document.querySelector(".collegeError").innerHTML = error.college;
+        }
+        if (error.mem) {
+          ConsoleHelper(error.mem);
+          document.querySelector(".memError").innerHTML = error.mem;
+        }
+      }
+    );
   };
 
   return (

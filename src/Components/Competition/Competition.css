@@ -21,6 +21,12 @@
   position: fixed;
 }
 
+@media only screen and (min-width: 890px) {
+  .competition-flex {
+    display: flex;
+  }
+}
+
 .App .homeicon,
 .App .leaderboardicon,
 .App .competitionicon,
@@ -73,6 +79,7 @@
 .competition-content-outer {
   display: flex;
 }
+
 .competition-question-outer {
   min-height: 36rem;
   background-color: #292929;
@@ -256,13 +263,14 @@ img {
   font-size: 1.2rem;
 }
 
-.div1,.div2,.div3 {
+.div1,
+.div2,
+.div3 {
   height: 1.5rem;
   width: 1.5rem;
   border-radius: 2rem;
   border: 3px solid white;
 }
-
 
 .line {
   background-color: white;
@@ -326,15 +334,17 @@ button:focus {
   background: rgba(248, 246, 246, 0.3);
 }
 
-.final{
+.final {
   position: absolute;
   top: 10px;
-  left:0px;
+  left: 0px;
   margin-left: 50%;
   transform: translateX(-50%);
 }
 
+
 @media only screen and (max-width: 1100px) {
+
   .competition-content-outer {
     display: flex;
     justify-content: center;
@@ -425,8 +435,6 @@ button:focus {
   .competition-title {
     font-size: 1.8rem;
   }
- 
-
 }
 
 @media only screen and (max-width: 690px) {
@@ -451,13 +459,15 @@ button:focus {
     border: 6px solid #ffb800;
     font-size: 1.5rem;
   }
-  .div1,.div2,.div3 {
+  .div1,
+  .div2,
+  .div3 {
     height: 1.1rem;
     width: 1.1rem;
     border-radius: 2rem;
     border: 2px solid white;
   }
-  
+
   .score-lower span {
     font-size: 1rem;
   }
@@ -466,12 +476,11 @@ button:focus {
     width: 7rem;
     padding: 0.5rem;
   }
- 
+
   .first-text {
     font-size: 1rem;
     margin-top: 1rem;
   }
-  
 }
 
 @media screen and (max-width: 576px) {
@@ -489,8 +498,8 @@ button:focus {
     margin-top: 40px;
     font-size: 8vw;
   }
-  .final{
-    top:100px;
+  .final {
+    top: 100px;
   }
 }
 
@@ -499,5 +508,3 @@ button:focus {
     width: 20rem;
   }
 }
-
-

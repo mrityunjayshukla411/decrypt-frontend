@@ -26,7 +26,7 @@ export default function MobileNavbar2() {
     //   var userID = JSON.parse(payload.toString()).id;
     //   ConsoleHelper(userID);
     //   axios
-    //     .post("https://d3crypt-backend.herokuapp.com/get-user", {
+    //     .post("http://localhost:4000/get-user", {
     //       uid: `${userID}`,
     //     })
     //     .then(

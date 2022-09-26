@@ -15,7 +15,7 @@ export default function ForgotPassword() {
   const [success, setSuccess] = useState(false);
   const [msg, setMsg] = useState("");
 
-  const url = "https://d3crypt-backend.herokuapp.com";
+  const url = "http://localhost:4000";
 
   function handleSubmit() {
     const data = {

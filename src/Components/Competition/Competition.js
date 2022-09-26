@@ -15,7 +15,7 @@ function App() {
   const [popup0, setPopup0] = useState(false);
   const [popup1, setPopup1] = useState(false);
   const [popup2, setPopup2] = useState(false);
-  const [finalPop,setFinalPop] = useState(false);
+  const [finalPop, setFinalPop] = useState(false);
   const [first, setFirst] = useState(0);
 
   const onClick = () => {
@@ -49,7 +49,7 @@ function App() {
   useEffect(async () => {
 
     const jwt = JSON.parse(localStorage.getItem("jwt"));
-    await axios.get("https://d3crypt-backend.herokuapp.com/check-verified", {
+    await axios.get("http://localhost:4000/check-verified", {
       headers: {
         'x-access-token': jwt
       }
@@ -68,51 +68,53 @@ function App() {
         ConsoleHelper(err.message);
         window.location.href = '/';
       })
-  })
+  }, [])
 
-  // useEffect(async () => {
-  //   const jwt = JSON.parse(localStorage.getItem("jwt"));
+  useEffect(async () => {
+    const jwt = JSON.parse(localStorage.getItem("jwt"));
 
-  //   await axios.get("https://d3crypt-backend.herokuapp.com/questions", {
-  //     headers: {
-  //       'x-access-token': jwt
-  //     }
-  //   })
-  //     .then((res) => {
-  //       ConsoleHelper(res)
+    await axios.get("http://localhost:4000/questions", {
+      headers: {
+        'x-access-token': jwt
+      }
+    })
+      .then((res) => {
+        ConsoleHelper(res)
 
-  //       if(res.data==="Congratulations!, you're done with all the questions"){
-  //         setFinalPop(true);
-  //       }
-  //       else{
-  //         if(res.data.question){
-  //       setQTitle(res.data.question.title);
-  //       setDiff(res.data.question.difficulty);
-  //       setScore(res.data.user.points);
-  //       setPoints(res.data.question.points);
-  //       setInd(res.data.user.currentQuestion + 1);
-  //       setImg1(res.data.question.image_1);
-  //       setImg2(res.data.question.image_2);
-  //       setImg3(res.data.question.image_3);
-  //       setImg4(res.data.question.image_4);
-  //       document.querySelector('.div1').style.backgroundColor = 'transparent';
-  //       document.querySelector('.div2').style.backgroundColor = 'transparent';
-  //       document.querySelector('.div3').style.backgroundColor = 'transparent';
+        if (res.data === "Congratulations!, you're done with all the questions") {
+          setFinalPop(true);
+        }
+        else {
+          if (res.data.question) {
+            setQTitle(res.data.question.title);
+            setDiff(res.data.question.difficulty);
+            setScore(res.data.user.points);
+            setPoints(res.data.question.points);
+            setInd(res.data.user.currentQuestion + 1);
+            setImg1(res.data.question.image_1);
+            setImg2(res.data.question.image_2);
+            setImg3(res.data.question.image_3);
+            setImg4(res.data.question.image_4);
+            document.querySelector('.div1').style.backgroundColor = 'transparent';
+            document.querySelector('.div2').style.backgroundColor = 'transparent';
+            document.querySelector('.div3').style.backgroundColor = 'transparent';
 
-  //       if (diff === 1) {
-  //         document.querySelector('.div1').style.backgroundColor = '#ffb800';
-  //         document.querySelector('.difficulty').innerHTML = "Easy";
-  //       }
-  //       if (diff === 2) {
-  //         document.querySelector('.div2').style.backgroundColor = '#ffb800';
-  //         document.querySelector('.difficulty').innerHTML = "Medium";
-  //       }
-  //       if (diff === 3) {
-  //         document.querySelector('.div3').style.backgroundColor = '#ffb800';
-  //         document.querySelector('.difficulty').innerHTML = "Hard";
-  //       }
-  //     }}});
-  // });
+            if (diff === 1) {
+              document.querySelector('.div1').style.backgroundColor = '#ffb800';
+              document.querySelector('.difficulty').innerHTML = "Easy";
+            }
+            if (diff === 2) {
+              document.querySelector('.div2').style.backgroundColor = '#ffb800';
+              document.querySelector('.difficulty').innerHTML = "Medium";
+            }
+            if (diff === 3) {
+              document.querySelector('.div3').style.backgroundColor = '#ffb800';
+              document.querySelector('.difficulty').innerHTML = "Hard";
+            }
+          }
+        }
+      });
+  });
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -122,7 +124,7 @@ function App() {
     var token = localStorage.getItem("jwt");
 
     axios
-      .post("https://d3crypt-backend.herokuapp.com/submit", {
+      .post("http://localhost:4000/submit", {
         answer: ans,
         token: token
       })
@@ -136,10 +138,10 @@ function App() {
         if (res.data.isCorrect === true) {
           setIndex(index + 1)
           setFirst(0);
-          // setPopup0(false);
-          // setPopup1(false);
-          // setPopup2(false);
-          if (ind === 30) {
+          setPopup0(false);
+          setPopup1(false);
+          setPopup2(false);
+          if (ind === 5) {
             setFinalPop(true);
           }
 
@@ -152,19 +154,23 @@ function App() {
         ConsoleHelper(error);
       });
   };
+
+  // const competitionContent = 
+
+
   return (
     <>
       <MobileNavbar2></MobileNavbar2>
       <div className="App competitions-container">
         <Sidebar></Sidebar>
-        {/* {popup0 ? (
+        {popup0 ? (
           <Popup0 remove0={setPopup0} add1={setPopup1} first={setFirst} />
         ) : null}
         {popup1 ? (
           <Popup1 remove1={setPopup1} add2={setPopup2} first={setFirst} userID={userID} />
         ) : null}
         {popup2 ? <Popup2 remove2={setPopup2} userID={userID} /> : null}
-        {finalPop ? <FinalPopup/> : null} */}
+        {finalPop ? <FinalPopup /> : null}
         <div className="competition-main-outer">
           <div className="temp">
             <div className="competition-title">
@@ -172,19 +178,18 @@ function App() {
               <div className="competition-line"></div>
             </div>
 
-            <div className="competition-content-outer">
-             <h5 style={{ textAlign: "center", color: "white"}}> The competition is now closed </h5>
+            {/* <div className="competition-content-outer">
+             <h5 style={{ textAlign: "center", color: "white"}}> The competition is now closed </h5> */}
 
             {/* UNCOMMENT when the contest starts */}
 
-               {/* <div className="competition-question-outer">
-               <div className="competition-question-content">
+            <div className="competition-flex">
+              <div className="competition-question-outer">
+                <div className="competition-question-content">
                   <div className="question-counter">
-                    Question <span>{ind}</span> of 30
+                    Question <span>{ind}</span> of 5
                   </div>
-
                   <div className="question-title">{qtitle}</div>
-
                   <div className="boxes-outer">
                     <div className="boxes">
                       <div class="grid-item">
@@ -217,9 +222,9 @@ function App() {
                     </button>
                   </div>
                   <div className="answer-error">&nbsp;</div>
-                </div> 
-              </div>*/}
-              {/* <div className="competition-score">
+                </div>
+              </div>
+              <div className="competition-score">
                 <div className="score-upper">
                   <div className="timer1">{points}</div>
                 </div>
@@ -230,7 +235,6 @@ function App() {
                     <div className="score">Score</div>
                   </div>
                 </div>
-
                 <div className="score-lower">
                   <div className="out">
                     <span className="difficulty">&nbsp;</span>
@@ -242,19 +246,19 @@ function App() {
                       <div className="div3"></div>
                     </div>
                   </div>
-
                   <button className='first' onClick={onClick}>
                     <RiLightbulbFlashLine className='first-logo' />
                     <p className='first-text'>Need a hint?</p>
                     <div className='first-overlay'></div>
                   </button>
                 </div>
-              </div> */}
-            </div> 
-            
+              </div>
+            </div>
+
+            {/* </div>  */}
+          </div>
         </div>
-        </div>
-      </div> 
+      </div>
     </>
   );
 }

@@ -5,7 +5,7 @@ import ConsoleHelper from "../../Components/consolelogger";
 export const register = function (newUser) {
   return function (dispatch) {
     return axios
-      .post("https://d3crypt-backend.herokuapp.com/signup", {
+      .post("http://localhost:4000/signup", {
         username: `${newUser.username}`,
         email: `${newUser.email}`,
         password: `${newUser.password}`,

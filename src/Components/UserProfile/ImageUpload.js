@@ -31,7 +31,7 @@ function ImageUpload() {
     ConsoleHelper(key);
     if (img !== defaultImg) {
       await axios
-        .post("https://d3crypt-backend.herokuapp.com/delete-image/" + key)
+        .post("http://localhost:4000/delete-image/" + key)
         .then((res) => {
           ConsoleHelper(res);
         })
@@ -57,7 +57,7 @@ function ImageUpload() {
     imageInput.append("image", file);
 
     axios
-      .post("https://d3crypt-backend.herokuapp.com/image", imageInput)
+      .post("http://localhost:4000/image", imageInput)
       .then(
         (response) => {
           const key = response.data;
@@ -67,7 +67,7 @@ function ImageUpload() {
           ConsoleHelper(data);
           const jwt = JSON.parse(localStorage.getItem("jwt"));
           axios
-            .post("https://d3crypt-backend.herokuapp.com/user-img", data, {
+            .post("http://localhost:4000/user-img", data, {
               headers: {
                 "x-access-token": jwt,
               },
@@ -91,7 +91,7 @@ function ImageUpload() {
       const jwt = JSON.parse(localStorage.getItem("jwt"));
       await axios
         .post(
-          "https://d3crypt-backend.herokuapp.com/get-user",
+          "http://localhost:4000/get-user",
           {},
           {
             headers: {
@@ -105,7 +105,7 @@ function ImageUpload() {
             if (response.data.imgKey) {
               setKey(response.data.imgKey);
               setImg(
-                "https://d3crypt-backend.herokuapp.com/image/" +
+                "http://localhost:4000/image/" +
                   response.data.imgKey
               );
             }

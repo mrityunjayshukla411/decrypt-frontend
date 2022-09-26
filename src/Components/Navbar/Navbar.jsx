@@ -26,7 +26,7 @@ export default function NavBar() {
   //     //user = JSON.parse(user);
   //     //ConsoleHelper(user);
   //     axios
-  //       .post("https://d3crypt-backend.herokuapp.com/get-user", {
+  //       .post("http://localhost:4000/get-user", {
   //         uid: `${userID}`,
   //       })
   //       .then(

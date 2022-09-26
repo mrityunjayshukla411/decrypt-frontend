@@ -15,7 +15,7 @@ export default function Home() {
     const jwt = JSON.parse(localStorage.getItem("jwt"));
 
     await axios
-      .get("https://d3crypt-backend.herokuapp.com/check-verified", {
+      .get("http://localhost:4000/check-verified", {
         headers: {
           "x-access-token": jwt,
         },
