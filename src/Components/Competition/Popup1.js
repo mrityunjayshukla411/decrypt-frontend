@@ -13,7 +13,7 @@ export default function Popup1({ remove1, add2, first, userID }) {
     ConsoleHelper(jwt);
     axios
       .put(
-        "http://localhost:4000/hint",
+        "https://d3crypt-backend.onrender.com/hint",
         {},
         {
           headers: {
