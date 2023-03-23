@@ -31,7 +31,7 @@ function ImageUpload() {
     ConsoleHelper(key);
     if (img !== defaultImg) {
       await axios
-        .post("http://localhost:4000/delete-image/" + key)
+        .post("https://d3crypt-backend.onrender.com/delete-image/" + key)
         .then((res) => {
           ConsoleHelper(res);
         })
@@ -57,7 +57,7 @@ function ImageUpload() {
     imageInput.append("image", file);
 
     axios
-      .post("http://localhost:4000/image", imageInput)
+      .post("https://d3crypt-backend.onrender.com/image", imageInput)
       .then(
         (response) => {
           const key = response.data;
@@ -67,7 +67,7 @@ function ImageUpload() {
           ConsoleHelper(data);
           const jwt = JSON.parse(localStorage.getItem("jwt"));
           axios
-            .post("http://localhost:4000/user-img", data, {
+            .post("https://d3crypt-backend.onrender.com/user-img", data, {
               headers: {
                 "x-access-token": jwt,
               },
@@ -91,7 +91,7 @@ function ImageUpload() {
       const jwt = JSON.parse(localStorage.getItem("jwt"));
       await axios
         .post(
-          "http://localhost:4000/get-user",
+          "https://d3crypt-backend.onrender.com/get-user",
           {},
           {
             headers: {
@@ -105,7 +105,7 @@ function ImageUpload() {
             if (response.data.imgKey) {
               setKey(response.data.imgKey);
               setImg(
-                "http://localhost:4000/image/" +
+                "https://d3crypt-backend.onrender.com/image/" +
                   response.data.imgKey
               );
             }
