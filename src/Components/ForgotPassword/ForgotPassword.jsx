@@ -15,7 +15,7 @@ export default function ForgotPassword() {
   const [success, setSuccess] = useState(false);
   const [msg, setMsg] = useState("");
 
-  const url = "http://localhost:4000";
+  const url = "https://d3crypt-backend.onrender.com";
 
   function handleSubmit() {
     const data = {
