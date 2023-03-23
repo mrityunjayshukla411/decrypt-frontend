@@ -2,19 +2,19 @@ import "./Ranks.css";
 
 function Ranks({ remainingList, first, second, third }) {
   if (first && first.imgKey) {
-    var firstImgSrc = "http://localhost:4000/image/" + first.imgKey;
+    var firstImgSrc = "https://d3crypt-backend.onrender.com/image/" + first.imgKey;
   }
   else {
     var firstImgSrc = 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg';
   }
   if (second && second.imgKey) {
-    var secondImgSrc = "http://localhost:4000/image/" + second.imgKey;
+    var secondImgSrc = "https://d3crypt-backend.onrender.com/image/" + second.imgKey;
   }
   else {
     var secondImgSrc = 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg';
   }
   if (third && third.imgKey) {
-    var thirdImgSrc = "http://localhost:4000/image/" + third.imgKey;
+    var thirdImgSrc = "https://d3crypt-backend.onrender.com/image/" + third.imgKey;
   }
   else {
     var thirdImgSrc = 'https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg';
