@@ -16,7 +16,7 @@ function LeaderBoard() {
   useEffect(async () => {
     const jwt = JSON.parse(localStorage.getItem("jwt"));
     await axios
-      .get("http://localhost:4000/check-verified", {
+      .get("https://d3crypt-backend.onrender.com/check-verified", {
         headers: {
           "x-access-token": jwt,
         },
@@ -39,7 +39,7 @@ function LeaderBoard() {
   useEffect(() => {
     // ConsoleHelper("inhere");
     axios
-      .get("http://localhost:4000/leaderboad")
+      .get("https://d3crypt-backend.onrender.com/leaderboad")
       .then(async (res) => {
         await setRemainingList(res.data.slice(3));
         setFirst(res.data[0]);
