@@ -14,7 +14,7 @@ function Popup2({remove2, userID}) {
     ConsoleHelper(jwt);
     ConsoleHelper(userID)
     axios
-      .put("http://localhost:4000/hint", {},{headers: {
+      .put("https://d3crypt-backend.onrender.com/hint", {},{headers: {
         'x-access-token': jwt
       }})
       .then((res)=>{
