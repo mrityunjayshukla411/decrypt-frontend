@@ -49,7 +49,7 @@ function App() {
   useEffect(async () => {
 
     const jwt = JSON.parse(localStorage.getItem("jwt"));
-    await axios.get("http://localhost:4000/check-verified", {
+    await axios.get("https://d3crypt-backend.onrender.com/check-verified", {
       headers: {
         'x-access-token': jwt
       }
@@ -71,7 +71,7 @@ function App() {
 
   useEffect(async () => {
     const jwt = JSON.parse(localStorage.getItem("jwt"));
-    await axios.get("http://localhost:4000/questions", {
+    await axios.get("https://d3crypt-backend.onrender.com/questions", {
       headers: {
         'x-access-token': jwt
       }
