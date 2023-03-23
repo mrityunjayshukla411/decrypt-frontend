@@ -15,7 +15,7 @@ export default function Home() {
     const jwt = JSON.parse(localStorage.getItem("jwt"));
 
     await axios
-      .get("http://localhost:4000/check-verified", {
+      .get("https://d3crypt-backend.onrender.com/check-verified", {
         headers: {
           "x-access-token": jwt,
         },
