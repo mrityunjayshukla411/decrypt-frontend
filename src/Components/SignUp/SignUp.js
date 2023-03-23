@@ -227,7 +227,7 @@ function SignUp() {
               <div className={styles.form}>
                 <input
                   className={styles.label}
-                  type="text"
+                  type="password"
                   name="password"
                   value={newUser.password}
                   onChange={handleOnChange}

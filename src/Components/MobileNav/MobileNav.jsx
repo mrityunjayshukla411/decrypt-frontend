@@ -56,6 +56,20 @@ export default function MobileNavbar() {
       });
     }
   });
+  var jwt
+  var [imgsrc,setImgsrc] = useState('https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg')
+  useEffect(async () => {
+    jwt = JSON.parse(localStorage.getItem("jwt"));
+    axios.get("http://localhost:4000/users/:idy", { params: { id: jwt } })
+    .then((res) => {
+      console.log(res.data.imgKey);
+      if (res && res.data.imgKey) {
+        var x = "http://localhost:4000/image/" + res.data.imgKey;
+        setImgsrc(x)
+      }
+    });
+},[]);
+
   return (
     <>
       <nav className="mobilenavbar">
@@ -65,7 +79,7 @@ export default function MobileNavbar() {
               setVisible(true);
             }}
             className="nav-profile2"
-            src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg"
+            src={imgsrc}
           />
         ) : (
           <div></div>

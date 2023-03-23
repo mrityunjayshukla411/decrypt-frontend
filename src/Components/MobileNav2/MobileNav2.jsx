@@ -18,37 +18,21 @@ export default function MobileNavbar2() {
     let windowHeight = document.documentElement.scrollHeight-61;
     ConsoleHelper(windowHeight);
     document.querySelector('.sidebar2 .sidebar').style.height = `${windowHeight}px`;
-
-    // var token = localStorage.getItem("jwt");
-    // if (token) {
-    //   var base64Payload = token.split(".")[1];
-    //   var payload = Buffer.from(base64Payload, "base64");
-    //   var userID = JSON.parse(payload.toString()).id;
-    //   ConsoleHelper(userID);
-    //   axios
-    //     .post("http://localhost:4000/get-user", {
-    //       uid: `${userID}`,
-    //     })
-    //     .then(
-    //       (response) => {
-    //         ConsoleHelper(response);
-    //         ConsoleHelper(response.data.isVerified);
-    //         if (response.data.isVerified == true) {
-    //           ConsoleHelper("dispatch for verified called");
-    //           dispatch(verified());
-    //         }
-    //       },
-    //       (error) => {
-    //         ConsoleHelper(error);
-    //       }
-    //     )
-    //     .catch((error) => {
-    //       ConsoleHelper(error);
-    //     });
-    // } else {
-    //   ConsoleHelper("User not found");
-    // }
   }, []);
+
+  var jwt
+  var [imgsrc,setImgsrc] = useState('https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg')
+  useEffect(async () => {
+    jwt = JSON.parse(localStorage.getItem("jwt"));
+    axios.get("http://localhost:4000/users/:idy", { params: { id: jwt } })
+    .then((res) => {
+      console.log(res.data.imgKey);
+      if (res && res.data.imgKey) {
+        var x = "http://localhost:4000/image/" + res.data.imgKey;
+        setImgsrc(x)
+      }
+    });
+},[]);
 
   function handleLogout() {
     localStorage.removeItem("jwt");
@@ -75,7 +59,7 @@ export default function MobileNavbar2() {
               setVisible(true);
             }}
             className="nav-profile2"
-            src="https://thumbs.dreamstime.com/b/default-avatar-profile-icon-vector-social-media-user-portrait-176256935.jpg"
+            src={imgsrc}
           />
         ) : (
           <div></div>

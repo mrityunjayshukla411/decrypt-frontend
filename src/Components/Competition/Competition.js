@@ -62,7 +62,6 @@ function App() {
         else {
           window.location.href = '/';
         }
-        // props.history.push("/")
       })
       .catch((err) => {
         ConsoleHelper(err.message);
@@ -72,16 +71,17 @@ function App() {
 
   useEffect(async () => {
     const jwt = JSON.parse(localStorage.getItem("jwt"));
-
     await axios.get("http://localhost:4000/questions", {
       headers: {
         'x-access-token': jwt
       }
     })
       .then((res) => {
+        console.log('in here');
         ConsoleHelper(res)
-
+        console.log(res.data);
         if (res.data === "Congratulations!, you're done with all the questions") {
+          document.querySelector('.competition-main-outer').style.display = 'none';
           setFinalPop(true);
         }
         else {
