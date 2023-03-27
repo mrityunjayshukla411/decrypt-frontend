@@ -11,10 +11,10 @@ function SignUpPopup({remove}) {
     <div>
       <div className='signup-content'>
         <div className='signup-title'>
-          <p className='signup-title-text'>The adventure is at an end</p>
+          <p className='signup-title-text'>Email Verification</p>
         </div>
         <div className='signup-body'>
-          <p className='signup-body-content'>Registrations are now closed. The results will be announced soon. Stay tuned 
+          <p className='signup-body-content'>Click on the link in your inbox/spam folder to verify yourself
            <a href="https://www.instagram.com/ieeesbm/?hl=en" target={"_blank"}> @ieeesbm</a></p>
           <button className='signup-button' onClick={handleClick}>
             <span className='signup-button-text'>Close</span>

@@ -23,19 +23,19 @@ function SignUp() {
   //     modalState : false
   //   }
   // }
-  
+
   // componentDidMount(){
   //   this.setState({
   //     modalState : true
   //   }) 
   // }
- 
-  const dispatch = useDispatch();
-  const [popup,setPopup] = useState(false);
 
-//   useEffect(() => {
-//     setTimeout(() => setPopup(true), 1000);
-// }, []);
+  const dispatch = useDispatch();
+  const [popup, setPopup] = useState(false);
+
+  //   useEffect(() => {
+  //     setTimeout(() => setPopup(true), 1000);
+  // }, []);
 
   useEffect(async () => {
 
@@ -76,14 +76,16 @@ function SignUp() {
     const { name, value } = e.target;
     setNewUser({ ...newUser, [name]: value });
   };
-  
+
   const handleOnSubmit = (e) => {
     e.preventDefault();
     dispatch(register(newUser)).then(
       () => {
         console.log("valid");
-        window.location.href = '/signin'
         setPopup(true);
+        setTimeout(function () {
+          window.location.href = '/signin'
+        }, 7000)
       },
       (error) => {
         ConsoleHelper(error);
@@ -123,7 +125,7 @@ function SignUp() {
 
   return (
     <div className={styles.bg}>
-    { popup ? <SignUpPopup /> : null }
+      {popup ? <SignUpPopup /> : null}
       <MobileNav />
       <div className={styles.head}>
         <NavBar />
@@ -133,7 +135,7 @@ function SignUp() {
           <Logo className={styles.logo} />
           <Illustration className={styles.image} />
           <p className={styles.description}>
-          D3CRYPT, IEEESBM’s annual cryptic hunt is here. Begin the quest today!
+            D3CRYPT, IEEESBM’s annual cryptic hunt is here. Begin the quest today!
           </p>
         </div>
         <div className={styles.content}>
